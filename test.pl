@@ -149,38 +149,49 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
 el identificador de imagenes de acuerdo al  sintoma
 */
 
-conocimiento('hidropesia',
-['el pez tiene las escamas levantadas', 'el pez tiene los ojos sobresalidos',
-'el pez tiene falta de apetito','el pez tiene el vientre hinchado']).
+conocimiento('ERES UN GATO',
+['Prefieres trabajar en proyectos de manera independiente o en equipo', 'Te sientes atraido por explorar lugares o actividades nuevas',
+'Disfrutas pasar tiempo con amigos y familiares cercanos','Te gusta participar en actividades ludicas o juegos en tu tiempo libre']).
 
-conocimiento('vejiga_natatoria',
-['el pez tiene el vientre hinchado', 'el pez tiene problemas de equilibrio',
-'el pez tiene falta de apetito','el pez tiene aletargamiento']).
+conocimiento('ERES UN PERRO',
+['Te gusta participar en actividades ludicas', 'Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas ',
+'Disfrutas pasar tiempo con amigos y familiares cercanos','Consideras que eres una persona leal y confiable en tus relaciones personales y laborales']).
 
-conocimiento('punto_blanco_ich',['el pez tiene puntos blancos a lo largo del cuerpo y aletas',
-'el pez tiene aletargamiento', 'el pez tiene las aletas retraidas']).
+conocimiento('punto_blanco_ich',['Te sientes responsable por la seguridad y el bienestar de tus seres queridos y estas dispuesto a protegerlos',
+'Consideras que eres una persona leal y confiable en tus relaciones personales y laborales', 'Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento']).
 
 conocimiento('estres',
-['el pez tiene estados de agresividad', 'el pez tiene falta de apetito',
- 'el pez tiene aletargamiento','el pez tiene las venas rojizas y dilatadas']).
+['Te sientes responsable por la seguridad y el bienestar de tus seres queridos y estas dispuesto a protegerlos', 'Disfrutas pasar tiempo con amigos y familiares cercanos',
+ 'Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales']).
 
 conocimiento('parasito_hexamita',
-['el pez tiene un hoyo en la cabeza', 'el pez tiene falta de apetito',
- 'el pez tiene aletargamiento', 'el pez tiene la cabeza con sangre y tejido muerto']).
-
-id_imagen_preg('Prefieres trabajar en equipo','escamas_levantadas').
-id_imagen_preg('Te sientes atraído por explorar actividades nuevas','ojos_sobresalidos').
-id_imagen_preg('Disfrutas pasar tiempo con amigos ','falta_apetito').
-id_imagen_preg('Te gusta participar en actividades lúdicas ','vientre_hinchado').
-id_imagen_preg('Tienes una mentalidad orientada a objetivos ','equilibrio').
-id_imagen_preg('el pez tiene aletargamiento','aletargamiento').
-id_imagen_preg('el pez tiene puntos blancos a lo largo del cuerpo y aletas','ich').
-id_imagen_preg('el pez tiene las aletas retraidas','aletas_retraidas').
-id_imagen_preg('el pez tiene estados de agresividad','agresivo').
-id_imagen_preg('el pez tiene las venas rojizas y dilatadas','venas_rojas').
-id_imagen_preg('el pez tiene un hoyo en la cabeza','hexamita').
-id_imagen_preg('el pez tiene la cabeza con sangre y tejido muerto','hexamita2').
-
+['el pez tiene un hoyo en la cabeza', 'Disfrutas pasar tiempo con amigos y familiares cercanos',
+ 'Consideras que eres una persona leal y confiable en tus relaciones personales y laborales', 'el pez tiene la cabeza con sangre y tejido muerto']).
+%TEST_GATO
+id_imagen_preg('Prefieres trabajar en proyectos de manera independiente o en equipo','escamas_levantadas').
+id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','ojos_sobresalidos').
+id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','falta_apetito').
+id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','vientre_hinchado').
+id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','equilibrio').
+%TEST_PERRO
+id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','aletargamiento').
+id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','ich').
+id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','aletas_retraidas').
+id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos y estas dispuesto a protegerlos','agresivo').
+id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','venas_rojas').
+%TEST_VACA
+id_imagen_preg('Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados','hexamita').
+id_imagen_preg('Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios','hexamita2').
+id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','hexamita').
+id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','hexamita').
+id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas o prefieres un entorno mas igualitario','hexamita').
+%TEST_DELFIN
+id_imagen_preg('Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva','hexamita').
+id_imagen_preg('Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares','hexamita').
+id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','hexamita').
+id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','hexamita').
+id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','hexamita').
+%TEST_PINWINO
  /* MOTOR DE INFERENCIA: Esta parte del sistema experto se encarga de
  inferir cual es el diagnostico a partir de las preguntas realizadas
  */
