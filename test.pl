@@ -168,12 +168,11 @@ conocimiento('parasito_hexamita',
 ['el pez tiene un hoyo en la cabeza', 'el pez tiene falta de apetito',
  'el pez tiene aletargamiento', 'el pez tiene la cabeza con sangre y tejido muerto']).
 
-id_imagen_preg('Prefieres trabajar en proyectos de manera independiente o en equipo
-','escamas_levantadas').
-id_imagen_preg('Te sientes atraído por explorar lugares o actividades nuevas','ojos_sobresalidos').
-id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','falta_apetito').
-id_imagen_preg('Te gusta participar en actividades lúdicas o juegos en tu tiempo libre','vientre_hinchado').
-id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','equilibrio').
+id_imagen_preg('Prefieres trabajar en equipo','escamas_levantadas').
+id_imagen_preg('Te sientes atraído por explorar actividades nuevas','ojos_sobresalidos').
+id_imagen_preg('Disfrutas pasar tiempo con amigos ','falta_apetito').
+id_imagen_preg('Te gusta participar en actividades lúdicas ','vientre_hinchado').
+id_imagen_preg('Tienes una mentalidad orientada a objetivos ','equilibrio').
 id_imagen_preg('el pez tiene aletargamiento','aletargamiento').
 id_imagen_preg('el pez tiene puntos blancos a lo largo del cuerpo y aletas','ich').
 id_imagen_preg('el pez tiene las aletas retraidas','aletas_retraidas').
