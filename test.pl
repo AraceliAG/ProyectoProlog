@@ -1,4 +1,7 @@
 
+%Guadalupes es popo
+
+
 
 /*
 INTERFAZ GRAFICA: Esta parte del sistema experto es la que se encarga de
