@@ -14,24 +14,24 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
 
  resource(img_principal, image, image('xd.jpg')).
  resource(portada, image, image('xd.jpg')).
- resource(hidropesia, image, image('trat_hidropesia.jpg')).
- resource(vejiga_natatoria, image, image('trat_vejiga.jpg')).
- resource(punto_blanco_ich, image, image('trat_ich.jpg')).
- resource(estres, image, image('trat_estres.jpg')).
- resource(parasito_hexamita, image, image('trat_hexamita.jpg')).
- resource(lo_siento_diagnostico_desconocido, image, image('desconocido.jpg')).
- resource(agresivo, image, image('agresividad.jpg')).
- resource(aletargamiento, image, image('aletargamiento.jpg')).
- resource(aletas_retraidas, image, image('aletas_retraidas.jpg')).
- resource(equilibrio, image, image('equilibrio.jpg')).
- resource(escamas_levantadas, image, image('escamas_levantadas.jpg')).
- resource(falta_apetito, image, image('falta_apetito.jpg')).
- resource(hexamita, image, image('hexamita.jpg')).
- resource(hexamita2, image, image('hexamita2.jpg')).
- resource(ich, image, image('ich.jpg')).
- resource(ojos_sobresalidos, image, image('ojos_sobresalidos.jpg')).
- resource(venas_rojas, image, image('venas_rojas.jpg')).
- resource(vientre_hinchado, image, image('vientre_hinchado.jpg')).
+ resource(hidropesia, image, image('delfin2.jpg')).
+ resource(vejiga_natatoria, image, image('pinwino.jpg')).
+ resource(punto_blanco_ich, image, image('pinwino2.jpg')).
+ resource(estres, image, image('delfin2.jpg')).
+ resource(parasito_hexamita, image, image('delfin2.jpg')).
+ resource(lo_siento_diagnostico_desconocido, image, image('delfin2.jpg')).
+ resource(agresivo, image, image('delfin2.jpg')).
+ resource(aletargamiento, image, image('delfin2.jpg')).
+ resource(aletas_retraidas, image, image('delfin2.jpg')).
+ resource(equilibrio, image, image('delfin2.jpg')).
+ resource(escamas_levantadas, image, image('delfin2.jpg')).
+ resource(falta_apetito, image, image('delfin2.jpg')).
+ resource(hexamita, image, image('delfin2.jpg')).
+ resource(hexamita2, image, image('delfin2.jpg')).
+ resource(ich, image, image('delfin2.jpg')).
+ resource(ojos_sobresalidos, image, image('delfin2.jpg')).
+ resource(venas_rojas, image, image('delfin2.jpg')).
+ resource(vientre_hinchado, image, image('delfin2.jpg')).
 
  mostrar_imagen(Pantalla, Imagen) :- new(Figura, figure),
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
@@ -110,7 +110,14 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
 
   interfaz_principal:-new(@main,dialog('TEST',
         size(1000,1000))),
+<<<<<<< Updated upstream
         new(@texto, label(nombre,'caracteristicas:',font('times','roman',18))),
+=======
+        new(@texto, label(nombre,'ELIGE EL TEST QUE DESEAS REALIZAR',font('times','bold',20))),
+       
+        send(@texto, colour, white), %cambio de color de letra del label
+      
+>>>>>>> Stashed changes
         new(@resp1, label(nombre,'',font('times','roman',22))),
         new(@lblExp1, label(nombre,'',font('times','roman',14))),
         new(@lblExp2, label(nombre,'',font('times','roman',14))),
@@ -120,9 +127,17 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
         new(@btntratamiento,button('¿Tratamiento?')),
 
         nueva_imagen(@main, img_principal),
+<<<<<<< Updated upstream
         send(@main, display,@boton,point(138,450)),
         send(@main, display,@texto,point(20,130)),
         send(@main, display,@salir,point(300,450)),
+=======
+        send(@main, display,@boton,point(300,200)), %modificacion de coordenada de boton 
+        send(@main, display,@boton2,point(300,250)), %modificacion de coordenada de boton2
+        send(@main, display,@boton3,point(255,300)), %modificacion de boton 3
+        send(@main, display,@texto,point(150,130)),
+        send(@main, display,@salir,point(300,350)),
+>>>>>>> Stashed changes
         send(@main, display,@resp1,point(20,180)),
         send(@main,open_centered).
 
@@ -145,8 +160,8 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
 
   :-crea_interfaz_inicio.
 
-/* BASE DE CONOCIMIENTOS: Sintomas y Enfermedades del Pez Goldfish, contiente ademas
-el identificador de imagenes de acuerdo al  sintoma
+/* BASE DE CONOCIMIENTOS: caracteristicas de personalidad, contiente ademas
+el identificador de imagenes de acuerdo a las repuestas
 */
 
 conocimiento('ERES UN GATO',
