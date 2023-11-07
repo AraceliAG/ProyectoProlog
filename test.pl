@@ -108,40 +108,33 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  interfaz_principal:-new(@main,dialog('TEST',
-        size(1000,1000))),
-<<<<<<< Updated upstream
-        new(@texto, label(nombre,'caracteristicas:',font('times','roman',18))),
-=======
-        new(@texto, label(nombre,'ELIGE EL TEST QUE DESEAS REALIZAR',font('times','bold',20))),
-       
-        send(@texto, colour, white), %cambio de color de letra del label
-      
->>>>>>> Stashed changes
-        new(@resp1, label(nombre,'',font('times','roman',22))),
-        new(@lblExp1, label(nombre,'',font('times','roman',14))),
-        new(@lblExp2, label(nombre,'',font('times','roman',14))),
-        new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
-        new(@boton, button('Iniciar Test',message(@prolog, botones))),
+interfaz_principal:-new(@main,dialog('TEST',
+  size(1000,1000))),
+  new(@texto, label(nombre,'ELIGE EL TEST QUE DESEAS REALIZAR',font('times','bold',20))),
+ 
+  send(@texto, colour, white), %cambio de color de letra del label
 
-        new(@btntratamiento,button('¿Tratamiento?')),
+  new(@resp1, label(nombre,'',font('times','roman',22))),
+  new(@lblExp1, label(nombre,'',font('times','roman',14))),
+  new(@lblExp2, label(nombre,'',font('times','roman',14))),
+  new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
+  new(@boton, button('ANIMALES',message(@prolog, botones))), %Se crea boton ANIMALES
+  new(@boton2, button('FNAF',message(@prolog, botones))), %Se crea boton FNAF
+  new(@boton3, button('TIPO DE ESTUDIANTES',message(@prolog, botones))), %Se crea boton tipo de estudiante
+  
 
-        nueva_imagen(@main, img_principal),
-<<<<<<< Updated upstream
-        send(@main, display,@boton,point(138,450)),
-        send(@main, display,@texto,point(20,130)),
-        send(@main, display,@salir,point(300,450)),
-=======
-        send(@main, display,@boton,point(300,200)), %modificacion de coordenada de boton 
-        send(@main, display,@boton2,point(300,250)), %modificacion de coordenada de boton2
-        send(@main, display,@boton3,point(255,300)), %modificacion de boton 3
-        send(@main, display,@texto,point(150,130)),
-        send(@main, display,@salir,point(300,350)),
->>>>>>> Stashed changes
-        send(@main, display,@resp1,point(20,180)),
-        send(@main,open_centered).
+  new(@btntratamiento,button('¿Tratamiento?')),
 
-       borrado:- send(@resp1, selection('')).
+  nueva_imagen(@main, img_principal),
+  send(@main, display,@boton,point(350,200)), %modificacion de coordenada de boton 
+  send(@main, display,@boton2,point(350,250)), %modificacion de coordenada de boton2
+  send(@main, display,@boton3,point(350,300)), %modificacion de boton 3
+  send(@main, display,@texto,point(150,130)),
+  send(@main, display,@salir,point(320,350)),
+  send(@main, display,@resp1,point(20,180)),
+  send(@main,open_centered).
+
+ borrado:- send(@resp1, selection('')).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
