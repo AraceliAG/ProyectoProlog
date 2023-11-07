@@ -192,6 +192,11 @@ id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu t
 id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','hexamita').
 id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','hexamita').
 %TEST_PINWINO
+id_imagen_preg('Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente','hexamita').
+id_imagen_preg('Eres una persona que valora la monogamia y la fidelidad en las relaciones personales','hexamita').
+id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos','hexamita').
+id_imagen_preg('Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','hexamita').
+id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','hexamita').
  /* MOTOR DE INFERENCIA: Esta parte del sistema experto se encarga de
  inferir cual es el diagnostico a partir de las preguntas realizadas
  */
