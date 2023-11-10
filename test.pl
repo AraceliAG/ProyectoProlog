@@ -61,28 +61,30 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
   botones:-borrado,
                 send(@boton, free),
                 send(@btntratamiento,free),
-                mostrar_diagnostico(Enfermedad),
-                send(@texto, selection('El Diagnostico a partir de los datos es:')),
-                send(@resp1, selection(Enfermedad)),
+                mostrar_resultado(Personaje),
+                send(@texto, selection('Resultado Final:')),
+                send(@resp1, selection(Personaje)),
                 new(@boton, button('Nuevo test',
                 message(@prolog, botones)
                 )),
 
                 new(@btntratamiento,button('Detalles',
-                message(@prolog, mostrar_tratamiento,Enfermedad)
+                message(@prolog, mostrar_personaje,Personaje)
                 )),
                 send(@main, display,@boton,point(20,450)),
                 send(@main, display,@btntratamiento,point(138,450)).
 
 
 
-  mostrar_tratamiento(X):-new(@tratam, dialog('Características')),
+  mostrar_personaje(X):-new(@tratam, dialog('Características')),
                           send(@tratam, append, label(nombre, 'Explicacion: ')),
                           send(@tratam, display,@lblExp1,point(70,51)),
                           send(@tratam, display,@lblExp2,point(50,80)),
                           tratamiento(X),
                           send(@tratam, transient_for, @main),
                           send(@tratam, open_centered).
+
+/* AQUI SE MUESTRA EL PERSONAJE QUE ERES*/
 
 tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamiento Es:')),
                  mostrar_imagen_tratamiento(@tratam,X).
@@ -206,39 +208,40 @@ id_imagen_preg('Eres una persona que valora la monogamia y la fidelidad en las r
 id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos','hexamita').
 id_imagen_preg('Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','hexamita').
 id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','hexamita').
+
  /* MOTOR DE INFERENCIA: Esta parte del sistema experto se encarga de
  inferir cual es el diagnostico a partir de las preguntas realizadas
  */
 :- dynamic conocido/1.
 
-  mostrar_diagnostico(X):-haz_diagnostico(X),clean_scratchpad.
-  mostrar_diagnostico(lo_siento_diagnostico_desconocido):-clean_scratchpad .
+  mostrar_resultado(X):-generar_personalidad(X),clean_scratchpad.
+  mostrar_resultado(error):-clean_scratchpad .
 
-  haz_diagnostico(Diagnosis):-
-                            obten_hipotesis_y_sintomas(Diagnosis, ListaDeSintomas),
-                            prueba_presencia_de(Diagnosis, ListaDeSintomas).
-
-
-obten_hipotesis_y_sintomas(Diagnosis, ListaDeSintomas):-
-                            conocimiento(Diagnosis, ListaDeSintomas).
+  generar_personalidad(Personalidad):-
+                            referente_respuestas(Personalidad, ListaDeSintomas),
+                            prueba_presencia_de(Personalidad, ListaDeSintomas).
 
 
-prueba_presencia_de(Diagnosis, []).
-prueba_presencia_de(Diagnosis, [Head | Tail]):- prueba_verdad_de(Diagnosis, Head),
-                                              prueba_presencia_de(Diagnosis, Tail).
+referente_respuestas(Personalidad, ListaDeSintomas):-
+                            conocimiento(Personalidad, ListaDeSintomas).
 
 
-prueba_verdad_de(Diagnosis, Sintoma):- conocido(Sintoma).
-prueba_verdad_de(Diagnosis, Sintoma):- not(conocido(is_false(Sintoma))),
-pregunta_sobre(Diagnosis, Sintoma, Reply), Reply = 'si'.
+prueba_presencia_de(Personalidad, []).
+prueba_presencia_de(Personalidad, [Head | Tail]):- prueba_verdad_de(Personalidad, Head),
+                                              prueba_presencia_de(Personalidad, Tail).
 
 
-pregunta_sobre(Diagnosis, Sintoma, Reply):- preguntar(Sintoma,Respuesta),
-                          process(Diagnosis, Sintoma, Respuesta, Reply).
+prueba_verdad_de(Personalidad, Res):- conocido(Res).
+prueba_verdad_de(Personalidad, Res):- not(conocido(is_false(Res))),
+pregunta_sobre(Personalidad, Res, Reply), Reply = 'si'.
 
 
-process(Diagnosis, Sintoma, si, si):- asserta(conocido(Sintoma)).
-process(Diagnosis, Sintoma, no, no):- asserta(conocido(is_false(Sintoma))).
+pregunta_sobre(Personalidad, Res, Reply):- preguntar(Res,Respuesta),
+                          process(Personalidad, Res, Respuesta, Reply).
+
+
+process(Personalidad, Res, si, si):- asserta(conocido(Res)).
+process(Personalidad, Res, no, no):- asserta(conocido(is_false(Res))).
 
 
 clean_scratchpad:- retract(conocido(X)), fail.
