@@ -179,7 +179,7 @@ conocimiento('ERES UN PINWINO',
 ['Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente', 'Eres una persona que valora la monogamia y la fidelidad en las relaciones personales',
  'Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos', 'Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles']).
 %TEST_GATO
-id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente').
+id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente'). %EN EL SEGUNDO PARAMETRO O SEA inndependiente SE LLAMA EL ID QUE SE DECLARA EN EL INICIO
 id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
 id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','amistad').
 id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','vientre_hinchado').
