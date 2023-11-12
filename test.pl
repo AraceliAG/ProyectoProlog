@@ -23,7 +23,7 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  resource(agresivo, image, image('delfin2.jpg')).
  resource(aletargamiento, image, image('delfin2.jpg')).
  resource(aletas_retraidas, image, image('delfin2.jpg')).
- resource(equilibrio, image, image('delfin2.jpg')).
+ resource(metas, image, image('metas.jpg')).
  resource(independiente, image, image('independiente.jpg')). %SE AGREGA EL NOMBRE DEL ID EN ESTE CASO ES independiente Y DENTRO DEL PARENTESIS EL NOMBRE DE NUETRO ARCHIVO
  resource(amistad, image, image('amistad.jpg')).
  resource(hexamita, image, image('delfin2.jpg')).
@@ -183,7 +183,7 @@ id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','indepe
 id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
 id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','amistad').
 id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','participacion').
-id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','equilibrio').
+id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','metas').
 %TEST_PERRO
 id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','aletargamiento').
 id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','ich').
