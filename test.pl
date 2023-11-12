@@ -31,7 +31,7 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  resource(ich, image, image('delfin2.jpg')).
  resource(curiosidad, image, image('curiosidad.jpg')).
  resource(venas_rojas, image, image('delfin2.jpg')).
- resource(vientre_hinchado, image, image('delfin2.jpg')).
+ resource(participacion, image, image('participacion.jpg')).
 
  mostrar_imagen(Pantalla, Imagen) :- new(Figura, figure),
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
@@ -182,7 +182,7 @@ conocimiento('ERES UN PINWINO',
 id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente'). %EN EL SEGUNDO PARAMETRO O SEA inndependiente SE LLAMA EL ID QUE SE DECLARA EN EL INICIO
 id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
 id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','amistad').
-id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','vientre_hinchado').
+id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','participacion').
 id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','equilibrio').
 %TEST_PERRO
 id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','aletargamiento').
