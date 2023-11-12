@@ -218,12 +218,12 @@ id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la 
   mostrar_resultado(error):-clean_scratchpad .
 
   generar_personalidad(Personalidad):-
-                            referente_respuestas(Personalidad, ListaDeSintomas),
-                            prueba_presencia_de(Personalidad, ListaDeSintomas).
+                            referente_respuestas(Personalidad, Lista),
+                            prueba_presencia_de(Personalidad, Lista).
 
 
-referente_respuestas(Personalidad, ListaDeSintomas):-
-                            conocimiento(Personalidad, ListaDeSintomas).
+referente_respuestas(Personalidad, Lista):-
+                            conocimiento(Personalidad, Lista).
 
 
 prueba_presencia_de(Personalidad, []).
