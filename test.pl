@@ -71,8 +71,8 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                 new(@btntratamiento,button('Detalles',
                 message(@prolog, mostrar_personaje,Personaje)
                 )),
-                send(@main, display,@boton,point(20,450)),
-                send(@main, display,@btntratamiento,point(138,450)).
+                send(@main, display,@boton,point(200,300)),
+                send(@main, display,@btntratamiento,point(200,350)).
 
 
 
