@@ -24,12 +24,12 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  resource(aletargamiento, image, image('delfin2.jpg')).
  resource(aletas_retraidas, image, image('delfin2.jpg')).
  resource(equilibrio, image, image('delfin2.jpg')).
- resource(escamas_levantadas, image, image('delfin2.jpg')).
- resource(falta_apetito, image, image('delfin2.jpg')).
+ resource(independiente, image, image('independiente.jpg')). %SE AGREGA EL NOMBRE DEL ID EN ESTE CASO ES independiente Y DENTRO DEL PARENTESIS EL NOMBRE DE NUETRO ARCHIVO
+ resource(amistad, image, image('amistad.jpg')).
  resource(hexamita, image, image('delfin2.jpg')).
  resource(hexamita2, image, image('delfin2.jpg')).
  resource(ich, image, image('delfin2.jpg')).
- resource(ojos_sobresalidos, image, image('delfin2.jpg')).
+ resource(curiosidad, image, image('curiosidad.jpg')).
  resource(venas_rojas, image, image('delfin2.jpg')).
  resource(vientre_hinchado, image, image('delfin2.jpg')).
 
@@ -160,7 +160,7 @@ el identificador de imagenes de acuerdo a las repuestas
 */
 
 conocimiento('ERES UN GATO',
-['Prefieres trabajar en proyectos de manera independiente o en equipo', 'Te sientes atraido por explorar lugares o actividades nuevas',
+['Prefieres trabajar en proyectos de manera independiente', 'Te sientes atraido por explorar lugares o actividades nuevas',
 'Disfrutas pasar tiempo con amigos y familiares cercanos','Te gusta participar en actividades ludicas o juegos en tu tiempo libre','Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas']).
 
 conocimiento('ERES UN PERRO',
@@ -179,9 +179,9 @@ conocimiento('ERES UN PINWINO',
 ['Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente', 'Eres una persona que valora la monogamia y la fidelidad en las relaciones personales',
  'Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos', 'Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles']).
 %TEST_GATO
-id_imagen_preg('Prefieres trabajar en proyectos de manera independiente o en equipo','escamas_levantadas').
-id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','ojos_sobresalidos').
-id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','falta_apetito').
+id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente').
+id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
+id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','amistad').
 id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','vientre_hinchado').
 id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','equilibrio').
 %TEST_PERRO
