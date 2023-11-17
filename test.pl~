@@ -119,7 +119,7 @@ interfaz_principal:-new(@main,dialog('TEST',
   new(@lblExp1, label(nombre,'',font('times','roman',14))),
   new(@lblExp2, label(nombre,'',font('times','roman',14))),
   new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
-  new(@boton, button('ANIMALES',message(@prolog, botones))), %Se crea boton ANIMALES
+  new(@boton, button('ANIMALES', and(message(@prolog, botones),message(@main,destroy),message(@main,free)))), %Se crea boton ANIMALES
   new(@boton2, button('FNAF',message(@prolog, botones))), %Se crea boton FNAF
   new(@boton3, button('TIPO DE ESTUDIANTES',message(@prolog, botones))), %Se crea boton tipo de estudiante
 
