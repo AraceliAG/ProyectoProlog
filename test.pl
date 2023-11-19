@@ -70,6 +70,7 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                 send(@btntratamiento,free),
                 mostrar_resultado(Personaje),
                 send(@texto, selection('Resultado Final:')),
+                send(@main, display,@texto,point(20,10)),
                 send(@resp1, selection(Personaje)),
                 new(@boton, button('Nuevo test',
                 message(@prolog, botones)
@@ -78,7 +79,7 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                 new(@btntratamiento,button('Detalles',
                 message(@prolog, mostrar_personaje,Personaje)
                 )),
-                send(@main, display,@boton,point(25,350)),
+                send(@main, display,@boton,point(25,250)),
                 send(@main, display,@btntratamiento,point(25,300)).   %BOTON DE DETALLES DEL PERSONAJE
 
 
@@ -124,7 +125,7 @@ interfaz_principal:-new(@main,dialog('TEST',
   send(@texto, colour, white), %cambio de color de letra del label
 
   new(@resp1, label(nombre,'',font('times','bold',30))),  %MUESTRA EL MENSAJE DEL RESULTADO
-  send(@resp1, colour, white), %CAMBIO DE COLOR 
+  send(@resp1, colour, white), %CAMBIO DE COLOR   %CAMBIO DE COLOR DEL RESULTADO
   new(@lblExp1, label(nombre,'',font('times','roman',14))),
   new(@lblExp2, label(nombre,'',font('times','roman',14))),
   new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
@@ -136,10 +137,10 @@ interfaz_principal:-new(@main,dialog('TEST',
   new(@btntratamiento,button('Resultado')),
 
   nueva_imagen(@main, img_principal),
-  send(@main, display,@boton,point(350,200)), %modificacion de coordenada de boton 
-  send(@main, display,@boton2,point(350,250)), %modificacion de coordenada de boton2
-  send(@main, display,@texto,point(150,130)), %Posicion del resultado del personaje
-  send(@main, display,@salir,point(350,350)), 
+  send(@main, display,@boton,point(300,100)), %modificacion de coordenada de boton 
+  send(@main, display,@boton2,point(300,150)), %modificacion de coordenada de boton2
+  send(@main, display,@texto,point(150,30)), %Posicion 
+  send(@main, display,@salir,point(25,350)), 
   send(@main, display,@resp1,point(20,50)), %Posicion del resultado del personaje
   send(@main,open_centered).
 
