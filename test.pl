@@ -176,16 +176,16 @@ conocimiento('ERES UN PERRO',
 'Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','Te sientes responsable por la seguridad y el bienestar de tus seres queridos','Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales']).
 
 conocimiento('ERES UNA VACA',
-['Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados',
-'Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios', 'Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','Te sientes comodo en situaciones con estructuras jerarquicas']).
+['Sueles mantener la calma en situaciones de estres o prefieres ambientes pacificos y relajados',
+'Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios', 'Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresion verbal','Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','Te sientes comodo en situaciones con estructuras jerarquicas']).
 
 conocimiento('ERES UN DELFIN',
 ['Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva', 'Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares',
  'Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno']).
 
 conocimiento('ERES UN PINWINO',
-['Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente', 'Eres una persona que valora la monogamia y la fidelidad en las relaciones personales',
- 'Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos', 'Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles']).
+['Te sientes mas comodo trabajando en equipo y disfrutas de la interaccion social o prefieres trabajar de manera independiente', 'Eres una persona que valora la monogamia y la fidelidad en las relaciones personales',
+ 'Te consideras una persona dedicada y dispuesta a asumir responsabilidades en el cuidado de tus seres queridos', 'Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles']).
 
 %TEST_FNAF
 conocimiento('ERES FOXY',
@@ -220,9 +220,9 @@ id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativ
 id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos','protector').
 id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','habilidad').
 %TEST_VACA
-id_imagen_preg('Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados','calma').
+id_imagen_preg('Sueles mantener la calma en situaciones de estres o prefieres ambientes pacificos y relajados','calma').
 id_imagen_preg('Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios','alimentacion').
-id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','comunicacion').
+id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresion verbal','comunicacion').
 id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','resistencia').
 id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas','jerarquia').
 %TEST_DELFIN
@@ -232,9 +232,9 @@ id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu t
 id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','social').
 id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','curiosidad').
 %TEST_PINWINO
-id_imagen_preg('Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente','comunidad').
+id_imagen_preg('Te sientes mas comodo trabajando en equipo y disfrutas de la interaccion social o prefieres trabajar de manera independiente','comunidad').
 id_imagen_preg('Eres una persona que valora la monogamia y la fidelidad en las relaciones personales','compromiso').
-id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos','crianza').
+id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en el cuidado de tus seres queridos','crianza').
 id_imagen_preg('Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','lenguaje').
 id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','persevera').
 
