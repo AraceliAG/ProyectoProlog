@@ -12,8 +12,8 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  :- use_module(library(pce_style_item)).
  :- dynamic color/2.
 
- resource(img_principal, image, image('xd.jpg')).
- resource(portada, image, image('xd.jpg')).
+ resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
+ resource(portada, image, image('xd.jpg')). %PORTADA DE INICIO 
  resource(hidropesia, image, image('delfin2.jpg')).
  resource(vejiga_natatoria, image, image('pinwino.jpg')).
  resource(punto_blanco_ich, image, image('pinwino2.jpg')).
