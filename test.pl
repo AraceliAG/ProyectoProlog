@@ -1,9 +1,4 @@
 
-%Guadalupes es popo
-%comoaraceli
-
-
-
 /*
 INTERFAZ GRAFICA: Esta parte del sistema experto es la que se encarga de
 interactuar con la persona comun, mostrar imagenes, botones, textos, etc.
@@ -17,26 +12,33 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  :- use_module(library(pce_style_item)).
  :- dynamic color/2.
 
- resource(img_principal, image, image('xd.jpg')).
- resource(portada, image, image('xd.jpg')).
- resource(hidropesia, image, image('trat_hidropesia.jpg')).
- resource(vejiga_natatoria, image, image('trat_vejiga.jpg')).
- resource(punto_blanco_ich, image, image('trat_ich.jpg')).
- resource(estres, image, image('trat_estres.jpg')).
- resource(parasito_hexamita, image, image('trat_hexamita.jpg')).
- resource(lo_siento_diagnostico_desconocido, image, image('desconocido.jpg')).
- resource(agresivo, image, image('agresividad.jpg')).
- resource(aletargamiento, image, image('aletargamiento.jpg')).
- resource(aletas_retraidas, image, image('aletas_retraidas.jpg')).
- resource(equilibrio, image, image('equilibrio.jpg')).
- resource(escamas_levantadas, image, image('escamas_levantadas.jpg')).
- resource(falta_apetito, image, image('falta_apetito.jpg')).
- resource(hexamita, image, image('hexamita.jpg')).
- resource(hexamita2, image, image('hexamita2.jpg')).
- resource(ich, image, image('ich.jpg')).
- resource(ojos_sobresalidos, image, image('ojos_sobresalidos.jpg')).
- resource(venas_rojas, image, image('venas_rojas.jpg')).
- resource(vientre_hinchado, image, image('vientre_hinchado.jpg')).
+ resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
+ resource(portada, image, image('xd.jpg')). %FONDO DE INICIO 
+ resource(comunicacion, image, image('Comunicacion.jpg')).
+ resource(jueg, image, image('Juego.jpg')).
+ resource(lenguaje, image, image('Lenguaje.jpg')).
+ resource(jerarquia, image, image('Jerarquia.jpg')).
+ resource(empatia, image, image('Empatia.jpg')).
+ resource(persevera, image, image('PersevaranciaP.jpg')).
+ resource(crianza, image, image('Crianza.jpg')).
+ resource(comunidad, image, image('Comunidad.jpg')).
+ resource(compromiso, image, image('Compromiso.jpg')).
+ resource(social, image, image('Sociabilidad.jpg')).
+ resource(parasito_hexamita, image, image('delfin2.jpg')).
+ resource(lo_siento_diagnostico_desconocido, image, image('delfin2.jpg')).
+ resource(protector, image, image('Protectores.jpg')).
+ resource(lealtad, image, image('Lealtad.jpg')).
+ resource(jugueton, image, image('Juguetones.jpg')).
+ resource(cazador, image, image('Cazador.jpg')).
+ resource(independiente, image, image('Independencia.jpg')). %SE AGREGA EL NOMBRE DEL ID EN ESTE CASO ES independiente Y DENTRO DEL PARENTESIS EL NOMBRE DE NUETRO ARCHIVO
+ resource(afecto, image, image('Afectuosidad.jpg')).
+ resource(calma, image, image('Tranquilidad.jpg')).
+  resource(resistencia, image, image('Resistencia.jpg')).
+ resource(alimentacion, image, image('Alimentacion.jpg')).
+ resource(amistoso, image, image('Perro.jpg')).
+ resource(curiosidad, image, image('curiosidad.jpg')).
+ resource(habilidad, image, image('Perro2.jpg')).
+ resource(juegos, image, image('Juegos.jpg')).
 
  mostrar_imagen(Pantalla, Imagen) :- new(Figura, figure),
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
@@ -66,28 +68,30 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
   botones:-borrado,
                 send(@boton, free),
                 send(@btntratamiento,free),
-                mostrar_diagnostico(Enfermedad),
-                send(@texto, selection('El Diagnostico a partir de los datos es:')),
-                send(@resp1, selection(Enfermedad)),
+                mostrar_resultado(Personaje),
+                send(@texto, selection('Resultado Final:')),
+                send(@resp1, selection(Personaje)),
                 new(@boton, button('Nuevo test',
                 message(@prolog, botones)
                 )),
 
                 new(@btntratamiento,button('Detalles',
-                message(@prolog, mostrar_tratamiento,Enfermedad)
+                message(@prolog, mostrar_personaje,Personaje)
                 )),
-                send(@main, display,@boton,point(20,450)),
-                send(@main, display,@btntratamiento,point(138,450)).
+                send(@main, display,@boton,point(25,350)),
+                send(@main, display,@btntratamiento,point(25,300)).   %BOTON DE DETALLES DEL PERSONAJE
 
 
 
-  mostrar_tratamiento(X):-new(@tratam, dialog('Características')),
+  mostrar_personaje(X):-new(@tratam, dialog('Características')),
                           send(@tratam, append, label(nombre, 'Explicacion: ')),
                           send(@tratam, display,@lblExp1,point(70,51)),
                           send(@tratam, display,@lblExp2,point(50,80)),
                           tratamiento(X),
                           send(@tratam, transient_for, @main),
                           send(@tratam, open_centered).
+
+/* AQUI SE MUESTRA EL PERSONAJE QUE ERES*/
 
 tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamiento Es:')),
                  mostrar_imagen_tratamiento(@tratam,X).
@@ -113,25 +117,33 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  interfaz_principal:-new(@main,dialog('TEST',
-        size(1000,1000))),
-        new(@texto, label(nombre,'caracteristicas:',font('times','roman',18))),
-        new(@resp1, label(nombre,'',font('times','roman',22))),
-        new(@lblExp1, label(nombre,'',font('times','roman',14))),
-        new(@lblExp2, label(nombre,'',font('times','roman',14))),
-        new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
-        new(@boton, button('Iniciar Test',message(@prolog, botones))),
+interfaz_principal:-new(@main,dialog('TEST',
+  size(1000,1000))),
+  new(@texto, label(nombre,'ELIGE EL TEST QUE DESEAS REALIZAR',font('times','bold',20))), %ELIGE TEXTO
+ 
+  send(@texto, colour, white), %cambio de color de letra del label
 
-        new(@btntratamiento,button('¿Tratamiento?')),
+  new(@resp1, label(nombre,'',font('times','bold',30))),  %MUESTRA EL MENSAJE DEL RESULTADO
+  send(@resp1, colour, white), %CAMBIO DE COLOR 
+  new(@lblExp1, label(nombre,'',font('times','roman',14))),
+  new(@lblExp2, label(nombre,'',font('times','roman',14))),
+  new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
+  new(@boton, button('ANIMALES',message(@prolog, botones))), %Se crea boton ANIMALES
+  new(@boton2, button('FNAF',message(@prolog, botones))), %Se crea boton FNAF
 
-        nueva_imagen(@main, img_principal),
-        send(@main, display,@boton,point(138,450)),
-        send(@main, display,@texto,point(20,130)),
-        send(@main, display,@salir,point(300,450)),
-        send(@main, display,@resp1,point(20,180)),
-        send(@main,open_centered).
+  
 
-       borrado:- send(@resp1, selection('')).
+  new(@btntratamiento,button('Resultado')),
+
+  nueva_imagen(@main, img_principal),
+  send(@main, display,@boton,point(350,200)), %modificacion de coordenada de boton 
+  send(@main, display,@boton2,point(350,250)), %modificacion de coordenada de boton2
+  send(@main, display,@texto,point(150,130)), %Posicion del resultado del personaje
+  send(@main, display,@salir,point(350,350)), 
+  send(@main, display,@resp1,point(20,50)), %Posicion del resultado del personaje
+  send(@main,open_centered).
+
+ borrado:- send(@resp1, selection('')).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -150,75 +162,148 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
 
   :-crea_interfaz_inicio.
 
-/* BASE DE CONOCIMIENTOS: Sintomas y Enfermedades del Pez Goldfish, contiente ademas
-el identificador de imagenes de acuerdo al  sintoma
+/* BASE DE CONOCIMIENTOS: caracteristicas de personalidad, contiente ademas
+el identificador de imagenes de acuerdo a las repuestas
 */
 
-conocimiento('hidropesia',
-['el pez tiene las escamas levantadas', 'el pez tiene los ojos sobresalidos',
-'el pez tiene falta de apetito','el pez tiene el vientre hinchado']).
+conocimiento('ERES UN GATO',
+['Prefieres trabajar en proyectos de manera independiente', 'Te sientes atraido por explorar lugares o actividades nuevas',
+'Disfrutas pasar tiempo con amigos y familiares cercanos','Te gusta participar en actividades ludicas','Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas']).
 
-conocimiento('vejiga_natatoria',
-['el pez tiene el vientre hinchado', 'el pez tiene problemas de equilibrio',
-'el pez tiene falta de apetito','el pez tiene aletargamiento']).
+conocimiento('ERES UN PERRO',
+['Consideras que eres una persona leal y confiable en tus relaciones personales y laborales', 'Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos ',
+'Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','Te sientes responsable por la seguridad y el bienestar de tus seres queridos','Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales']).
 
-conocimiento('punto_blanco_ich',['el pez tiene puntos blancos a lo largo del cuerpo y aletas',
-'el pez tiene aletargamiento', 'el pez tiene las aletas retraidas']).
+conocimiento('ERES UNA VACA',
+['Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados',
+'Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios', 'Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','Te sientes comodo en situaciones con estructuras jerarquicas']).
 
-conocimiento('estres',
-['el pez tiene estados de agresividad', 'el pez tiene falta de apetito',
- 'el pez tiene aletargamiento','el pez tiene las venas rojizas y dilatadas']).
+conocimiento('ERES UN DELFIN',
+['Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva', 'Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares',
+ 'Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno']).
 
-conocimiento('parasito_hexamita',
-['el pez tiene un hoyo en la cabeza', 'el pez tiene falta de apetito',
- 'el pez tiene aletargamiento', 'el pez tiene la cabeza con sangre y tejido muerto']).
+conocimiento('ERES UN PINWINO',
+['Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente', 'Eres una persona que valora la monogamia y la fidelidad en las relaciones personales',
+ 'Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos', 'Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles']).
 
-id_imagen_preg('el pez tiene las escamas levantadas','escamas_levantadas').
-id_imagen_preg('el pez tiene los ojos sobresalidos','ojos_sobresalidos').
-id_imagen_preg('el pez tiene falta de apetito','falta_apetito').
-id_imagen_preg('el pez tiene el vientre hinchado','vientre_hinchado').
-id_imagen_preg('el pez tiene problemas de equilibrio','equilibrio').
-id_imagen_preg('el pez tiene aletargamiento','aletargamiento').
-id_imagen_preg('el pez tiene puntos blancos a lo largo del cuerpo y aletas','ich').
-id_imagen_preg('el pez tiene las aletas retraidas','aletas_retraidas').
-id_imagen_preg('el pez tiene estados de agresividad','agresivo').
-id_imagen_preg('el pez tiene las venas rojizas y dilatadas','venas_rojas').
-id_imagen_preg('el pez tiene un hoyo en la cabeza','hexamita').
-id_imagen_preg('el pez tiene la cabeza con sangre y tejido muerto','hexamita2').
+%TEST_FNAF
+conocimiento('ERES FOXY',
+['Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa', 'Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion',
+'Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto']).
+conocimiento('ERES FREDDYFAZBEAR',
+['Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas', 'Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales',
+'Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','Eres colaborativo o puedes tener rivalidades competitivas','Te mantienes firme o prefieres evitar conflictos']).
+conocimiento('ERES CHICA POLLITA SEXY',
+['Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno', 'Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas',
+'Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos']).
+conocimiento('ERES BONNIE',
+['Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica', 'Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos',
+'Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos']).
+conocimiento('ERES SPRINGTRAP',
+['Eres capaz de mantener la calma y tomar decisiones racionales', 'Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces',
+'Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a']).
+
+
+
+
+%TEST_GATO
+id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente'). %EN EL SEGUNDO PARAMETRO O SEA inndependiente SE LLAMA EL ID QUE SE DECLARA EN EL INICIO
+id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
+id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','afecto').
+id_imagen_preg('Te gusta participar en actividades ludicas','juegos').
+id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','cazador').
+%TEST_PERRO
+id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','lealtad').
+id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','amistoso').
+id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','jugueton').
+id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos','protector').
+id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','habilidad').
+%TEST_VACA
+id_imagen_preg('Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados','calma').
+id_imagen_preg('Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios','alimentacion').
+id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','comunicacion').
+id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','resistencia').
+id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas','jerarquia').
+%TEST_DELFIN
+id_imagen_preg('Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva','calma').
+id_imagen_preg('Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares','social').
+id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','jueg').
+id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','social').
+id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','curiosidad').
+%TEST_PINWINO
+id_imagen_preg('Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente','comunidad').
+id_imagen_preg('Eres una persona que valora la monogamia y la fidelidad en las relaciones personales','compromiso').
+id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos','crianza').
+id_imagen_preg('Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','lenguaje').
+id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','persevera').
+
+
+%TEST_FOXY
+id_imagen_preg('Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa','escamas_levantadas').
+id_imagen_preg('Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion','calma').
+id_imagen_preg('Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','calma').
+id_imagen_preg('Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','calma').
+id_imagen_preg('Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto','calma').
+%TEST_FREDDYFAZBEAR
+id_imagen_preg('Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas','calma').
+id_imagen_preg('Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales','calma').
+id_imagen_preg('Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','calma').
+id_imagen_preg('Eres colaborativo o puedes tener rivalidades competitivas','calma').
+id_imagen_preg('Te mantienes firme o prefieres evitar conflictos','calma').
+%TEST_CHICA
+id_imagen_preg('Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno','calma').
+id_imagen_preg('Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas','calma').
+id_imagen_preg('Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','calma').
+id_imagen_preg('Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','calma').
+id_imagen_preg('Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos','calma').
+%TEST_BONNIE
+id_imagen_preg('Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica','calma').
+id_imagen_preg('Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos','calma').
+id_imagen_preg('Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','calma').
+id_imagen_preg('Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','calma').
+id_imagen_preg('Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos','calma').
+%TEST_SPRINGTRAP
+id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones racionales','hexamita').
+id_imagen_preg('Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces','calma').
+id_imagen_preg('Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','calma').
+id_imagen_preg('Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','calma').
+id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a','calma').
+
+
 
  /* MOTOR DE INFERENCIA: Esta parte del sistema experto se encarga de
  inferir cual es el diagnostico a partir de las preguntas realizadas
  */
 :- dynamic conocido/1.
 
-  mostrar_diagnostico(X):-haz_diagnostico(X),clean_scratchpad.
-  mostrar_diagnostico(lo_siento_diagnostico_desconocido):-clean_scratchpad .
+  mostrar_resultado(X):-generar_personalidad(X),clean_scratchpad.
+  mostrar_resultado(error):-clean_scratchpad .
 
-  haz_diagnostico(Diagnosis):-
-                            obten_hipotesis_y_sintomas(Diagnosis, ListaDeSintomas),
-                            prueba_presencia_de(Diagnosis, ListaDeSintomas).
-
-
-obten_hipotesis_y_sintomas(Diagnosis, ListaDeSintomas):-
-                            conocimiento(Diagnosis, ListaDeSintomas).
+  generar_personalidad(Personalidad):-
+                            referente_respuestas(Personalidad, Lista),
+                            prueba_presencia_de(Personalidad, Lista).
 
 
-prueba_presencia_de(Diagnosis, []).
-prueba_presencia_de(Diagnosis, [Head | Tail]):- prueba_verdad_de(Diagnosis, Head),
-                                              prueba_presencia_de(Diagnosis, Tail).
+referente_respuestas(Personalidad, Lista):-
+                            conocimiento(Personalidad, Lista).
 
 
-prueba_verdad_de(Diagnosis, Sintoma):- conocido(Sintoma).
-prueba_verdad_de(Diagnosis, Sintoma):- not(conocido(is_false(Sintoma))),
-pregunta_sobre(Diagnosis, Sintoma, Reply), Reply = 'si'.
+prueba_presencia_de(Personalidad, []).
+prueba_presencia_de(Personalidad, [Head | Tail]):- prueba_verdad_de(Personalidad, Head),
+                                              prueba_presencia_de(Personalidad, Tail).
 
 
-pregunta_sobre(Diagnosis, Sintoma, Reply):- preguntar(Sintoma,Respuesta),
-                          process(Diagnosis, Sintoma, Respuesta, Reply).
+prueba_verdad_de(Personalidad, Res):- conocido(Res).
+prueba_verdad_de(Personalidad, Res):- not(conocido(is_false(Res))),
+pregunta_sobre(Personalidad, Res, Reply), Reply = 'si'.
 
 
-process(Diagnosis, Sintoma, si, si):- asserta(conocido(Sintoma)).
-process(Diagnosis, Sintoma, no, no):- asserta(conocido(is_false(Sintoma))).
+pregunta_sobre(Personalidad, Res, Reply):- preguntar(Res,Respuesta),
+                          process(Personalidad, Res, Respuesta, Reply).
+
+
+process(Personalidad, Res, si, si):- asserta(conocido(Res)).
+process(Personalidad, Res, no, no):- asserta(conocido(is_false(Res))).
 
 
 clean_scratchpad:- retract(conocido(X)), fail.
