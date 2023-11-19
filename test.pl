@@ -14,24 +14,30 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
 
  resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
  resource(portada, image, image('xd.jpg')). %FONDO DE INICIO 
- resource(hidropesia, image, image('delfin2.jpg')).
- resource(vejiga_natatoria, image, image('pinwino.jpg')).
- resource(punto_blanco_ich, image, image('pinwino2.jpg')).
- resource(estres, image, image('delfin2.jpg')).
+ resource(comunicacion, image, image('Comunicacion.jpg')).
+ resource(jueg, image, image('Juego.jpg')).
+ resource(lenguaje, image, image('Lenguaje.jpg')).
+ resource(jerarquia, image, image('Jerarquia.jpg')).
+ resource(empatia, image, image('Empatia.jpg')).
+ resource(persevera, image, image('PersevaranciaP.jpg')).
+ resource(crianza, image, image('Crianza.jpg')).
+ resource(comunidad, image, image('Comunidad.jpg')).
+ resource(compromiso, image, image('Compromiso.jpg')).
+ resource(social, image, image('Sociabilidad.jpg')).
  resource(parasito_hexamita, image, image('delfin2.jpg')).
  resource(lo_siento_diagnostico_desconocido, image, image('delfin2.jpg')).
- resource(agresivo, image, image('delfin2.jpg')).
- resource(aletargamiento, image, image('delfin2.jpg')).
- resource(aletas_retraidas, image, image('delfin2.jpg')).
- resource(metas, image, image('metas.jpg')).
- resource(independiente, image, image('independiente.jpg')). %SE AGREGA EL NOMBRE DEL ID EN ESTE CASO ES independiente Y DENTRO DEL PARENTESIS EL NOMBRE DE NUETRO ARCHIVO
- resource(amistad, image, image('amistad.jpg')).
- resource(hexamita, image, image('delfin2.jpg')).
- resource(hexamita2, image, image('delfin2.jpg')).
- resource(ich, image, image('delfin2.jpg')).
+ resource(protector, image, image('Protectores.jpg')).
+ resource(lealtad, image, image('Lealtad.jpg')).
+ resource(jugueton, image, image('Juguetones.jpg')).
+ resource(cazador, image, image('Cazador.jpg')).
+ resource(independiente, image, image('Independencia.jpg')). %SE AGREGA EL NOMBRE DEL ID EN ESTE CASO ES independiente Y DENTRO DEL PARENTESIS EL NOMBRE DE NUETRO ARCHIVO
+ resource(afecto, image, image('Afectuosidad.jpg')).
+ resource(calma, image, image('Tranquilidad.jpg')).
+ resource(alimentacion, image, image('Alimentacion.jpg')).
+ resource(amistoso, image, image('Perro.jpg')).
  resource(curiosidad, image, image('curiosidad.jpg')).
- resource(venas_rojas, image, image('delfin2.jpg')).
- resource(participacion, image, image('participacion.jpg')).
+ resource(habilidad, image, image('Perro2.jpg')).
+ resource(juegos, image, image('Juegos.jpg')).
 
  mostrar_imagen(Pantalla, Imagen) :- new(Figura, figure),
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
@@ -201,65 +207,65 @@ conocimiento('ERES SPRINGTRAP',
 %TEST_GATO
 id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente'). %EN EL SEGUNDO PARAMETRO O SEA inndependiente SE LLAMA EL ID QUE SE DECLARA EN EL INICIO
 id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
-id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','amistad').
-id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','participacion').
-id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','metas').
+id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','afecto').
+id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','juegos').
+id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','cazador').
 %TEST_PERRO
-id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','aletargamiento').
-id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','ich').
-id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','aletas_retraidas').
-id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos y estas dispuesto a protegerlos','agresivo').
-id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','venas_rojas').
+id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','lealtad').
+id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','amistoso').
+id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','jugueton').
+id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos y estas dispuesto a protegerlos','protector').
+id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','habilidad').
 %TEST_VACA
-id_imagen_preg('Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados','hexamita').
-id_imagen_preg('Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios','hexamita2').
-id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','hexamita').
-id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','hexamita').
-id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas o prefieres un entorno mas igualitario','hexamita').
+id_imagen_preg('Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados','calma').
+id_imagen_preg('Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios','alimentacion').
+id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','comunicacion').
+id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','calma').
+id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas o prefieres un entorno mas igualitario','jerarquia').
 %TEST_DELFIN
-id_imagen_preg('Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva','hexamita').
-id_imagen_preg('Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares','hexamita').
-id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','hexamita').
-id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','hexamita').
-id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','hexamita').
+id_imagen_preg('Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva','calma').
+id_imagen_preg('Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares','social').
+id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','jueg').
+id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','social').
+id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','curiosidad').
 %TEST_PINWINO
-id_imagen_preg('Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente','hexamita').
-id_imagen_preg('Eres una persona que valora la monogamia y la fidelidad en las relaciones personales','hexamita').
-id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos','hexamita').
-id_imagen_preg('Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','hexamita').
-id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','hexamita').
+id_imagen_preg('Te sientes mas comodo trabajando en equipo y disfrutas de la interacción social o prefieres trabajar de manera independiente','comunidad').
+id_imagen_preg('Eres una persona que valora la monogamia y la fidelidad en las relaciones personales','compromiso').
+id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en la crianza de tus hijos o cuidado de tus seres queridos','crianza').
+id_imagen_preg('Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','lenguaje').
+id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','persevera').
 
 
 %TEST_FOXY
 id_imagen_preg('Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa','escamas_levantadas').
-id_imagen_preg('Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion','hexamita').
-id_imagen_preg('Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','hexamita').
-id_imagen_preg('Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','hexamita').
-id_imagen_preg('Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto','hexamita').
+id_imagen_preg('Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion','calma').
+id_imagen_preg('Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','calma').
+id_imagen_preg('Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','calma').
+id_imagen_preg('Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto','calma').
 %TEST_FREDDYFAZBEAR
-id_imagen_preg('Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas','hexamita').
-id_imagen_preg('Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales','hexamita').
-id_imagen_preg('Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','hexamita').
-id_imagen_preg('Eres colaborativo o puedes tener rivalidades competitivas','hexamita').
-id_imagen_preg('Te mantienes firme o prefieres evitar conflictos','hexamita').
+id_imagen_preg('Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas','calma').
+id_imagen_preg('Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales','calma').
+id_imagen_preg('Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','calma').
+id_imagen_preg('Eres colaborativo o puedes tener rivalidades competitivas','calma').
+id_imagen_preg('Te mantienes firme o prefieres evitar conflictos','calma').
 %TEST_CHICA
-id_imagen_preg('Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno','hexamita').
-id_imagen_preg('Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas','hexamita').
-id_imagen_preg('Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','hexamita').
-id_imagen_preg('Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','hexamita').
-id_imagen_preg('Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos','hexamita').
+id_imagen_preg('Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno','calma').
+id_imagen_preg('Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas','calma').
+id_imagen_preg('Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','calma').
+id_imagen_preg('Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','calma').
+id_imagen_preg('Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos','calma').
 %TEST_BONNIE
-id_imagen_preg('Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica','hexamita').
-id_imagen_preg('Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos','hexamita').
-id_imagen_preg('Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','hexamita').
-id_imagen_preg('Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','hexamita').
-id_imagen_preg('Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos','hexamita').
+id_imagen_preg('Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica','calma').
+id_imagen_preg('Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos','calma').
+id_imagen_preg('Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','calma').
+id_imagen_preg('Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','calma').
+id_imagen_preg('Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos','calma').
 %TEST_SPRINGTRAP
 id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones racionales','hexamita').
-id_imagen_preg('Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces','hexamita').
-id_imagen_preg('Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','hexamita').
-id_imagen_preg('Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','hexamita').
-id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a','hexamita').
+id_imagen_preg('Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces','calma').
+id_imagen_preg('Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','calma').
+id_imagen_preg('Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','calma').
+id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a','calma').
 
 
 
