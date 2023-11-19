@@ -33,6 +33,7 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  resource(independiente, image, image('Independencia.jpg')). %SE AGREGA EL NOMBRE DEL ID EN ESTE CASO ES independiente Y DENTRO DEL PARENTESIS EL NOMBRE DE NUETRO ARCHIVO
  resource(afecto, image, image('Afectuosidad.jpg')).
  resource(calma, image, image('Tranquilidad.jpg')).
+  resource(resistencia, image, image('Resistencia.jpg')).
  resource(alimentacion, image, image('Alimentacion.jpg')).
  resource(amistoso, image, image('Perro.jpg')).
  resource(curiosidad, image, image('curiosidad.jpg')).
@@ -77,8 +78,8 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                 new(@btntratamiento,button('Detalles',
                 message(@prolog, mostrar_personaje,Personaje)
                 )),
-                send(@main, display,@boton,point(200,300)),
-                send(@main, display,@btntratamiento,point(200,350)).
+                send(@main, display,@boton,point(25,350)),
+                send(@main, display,@btntratamiento,point(25,300)).   %BOTON DE DETALLES DEL PERSONAJE
 
 
 
@@ -118,11 +119,12 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
 
 interfaz_principal:-new(@main,dialog('TEST',
   size(1000,1000))),
-  new(@texto, label(nombre,'ELIGE EL TEST QUE DESEAS REALIZAR',font('times','bold',20))),
+  new(@texto, label(nombre,'ELIGE EL TEST QUE DESEAS REALIZAR',font('times','bold',20))), %ELIGE TEXTO
  
   send(@texto, colour, white), %cambio de color de letra del label
 
-  new(@resp1, label(nombre,'',font('times','roman',22))),
+  new(@resp1, label(nombre,'',font('times','bold',30))),  %MUESTRA EL MENSAJE DEL RESULTADO
+  send(@resp1, colour, white), %CAMBIO DE COLOR 
   new(@lblExp1, label(nombre,'',font('times','roman',14))),
   new(@lblExp2, label(nombre,'',font('times','roman',14))),
   new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
@@ -136,9 +138,9 @@ interfaz_principal:-new(@main,dialog('TEST',
   nueva_imagen(@main, img_principal),
   send(@main, display,@boton,point(350,200)), %modificacion de coordenada de boton 
   send(@main, display,@boton2,point(350,250)), %modificacion de coordenada de boton2
-  send(@main, display,@texto,point(150,130)),
-  send(@main, display,@salir,point(320,350)),
-  send(@main, display,@resp1,point(20,180)),
+  send(@main, display,@texto,point(150,130)), %Posicion del resultado del personaje
+  send(@main, display,@salir,point(350,350)), 
+  send(@main, display,@resp1,point(20,50)), %Posicion del resultado del personaje
   send(@main,open_centered).
 
  borrado:- send(@resp1, selection('')).
@@ -166,15 +168,15 @@ el identificador de imagenes de acuerdo a las repuestas
 
 conocimiento('ERES UN GATO',
 ['Prefieres trabajar en proyectos de manera independiente', 'Te sientes atraido por explorar lugares o actividades nuevas',
-'Disfrutas pasar tiempo con amigos y familiares cercanos','Te gusta participar en actividades ludicas o juegos en tu tiempo libre','Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas']).
+'Disfrutas pasar tiempo con amigos y familiares cercanos','Te gusta participar en actividades ludicas','Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas']).
 
 conocimiento('ERES UN PERRO',
 ['Consideras que eres una persona leal y confiable en tus relaciones personales y laborales', 'Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos ',
-'Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento',' Te sientes responsable por la seguridad y el bienestar de tus seres queridos y estas dispuesto a protegerlos','Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales']).
+'Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','Te sientes responsable por la seguridad y el bienestar de tus seres queridos','Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales']).
 
 conocimiento('ERES UNA VACA',
 ['Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados',
-'Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios', 'Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','Te sientes comodo en situaciones con estructuras jerarquicas o prefieres un entorno mas igualitario']).
+'Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios', 'Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','Te sientes comodo en situaciones con estructuras jerarquicas']).
 
 conocimiento('ERES UN DELFIN',
 ['Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva', 'Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares',
@@ -208,20 +210,20 @@ conocimiento('ERES SPRINGTRAP',
 id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente'). %EN EL SEGUNDO PARAMETRO O SEA inndependiente SE LLAMA EL ID QUE SE DECLARA EN EL INICIO
 id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
 id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','afecto').
-id_imagen_preg('Te gusta participar en actividades ludicas o juegos en tu tiempo libre','juegos').
+id_imagen_preg('Te gusta participar en actividades ludicas','juegos').
 id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','cazador').
 %TEST_PERRO
 id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','lealtad').
 id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','amistoso').
 id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','jugueton').
-id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos y estas dispuesto a protegerlos','protector').
+id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos','protector').
 id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','habilidad').
 %TEST_VACA
 id_imagen_preg('Sueles mantener la calma en situaciones de estrés o prefieres ambientes pacificos y relajados','calma').
 id_imagen_preg('Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios','alimentacion').
 id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresión verbal','comunicacion').
-id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','calma').
-id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas o prefieres un entorno mas igualitario','jerarquia').
+id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','resistencia').
+id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas','jerarquia').
 %TEST_DELFIN
 id_imagen_preg('Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva','calma').
 id_imagen_preg('Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares','social').
