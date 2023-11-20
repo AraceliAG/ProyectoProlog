@@ -77,35 +77,32 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                                 send(Ventana1, display,Figura,point(500,60)).
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-  botones:-borrado,
-                send(@boton, free),
-                send(@btntratamiento,free),
-                mostrar_resultado(Personaje),
-                send(@texto, selection('Resultado Final:')),
-                send(@main, display,@texto,point(20,10)),
-                send(@resp1, selection(Personaje)),
-                new(@boton, button('Nuevo test',
-                message(@prolog, botones)
-                )),
+  botones :- borrado, 
+                  send(@boton, free),
+                  send(@btntratamiento, free),
+                  mostrar_resultado(Personaje),
+                  send(@texto, selection('Resultado Final:')),
+                  send(@main, display, @texto, point(20,10)),
+                  send(@resp1, selection(Personaje)),
+                  new(@boton, button('Nuevo test',
+                  message(@prolog, botones)
+                  )),
+                  new(@btntratamiento, button('Detalles',
+                  message(@prolog, mostrar_personaje, Personaje)
+                  )),
+                  send(@main, display, @boton, point(25, 250)),
+                  send(@main, display, @btntratamiento, point(25, 300)).   %BOTON DE DETALLES DEL PERSONAJE
 
-                new(@btntratamiento,button('Detalles',
-                message(@prolog, mostrar_personaje,Personaje)
-                )),
-                send(@main, display,@boton,point(25,250)),
-                send(@main, display,@btntratamiento,point(25,300)).   %BOTON DE DETALLES DEL PERSONAJE
-
-
-  botones1:-borrado,
+botones1 :- borrado, 
                 send(@boton2, free),
-                send(@btntratamiento,free),
+                send(@btntratamiento, free), % Cambio de identificador para el botón de detalles
                 mostrar_resultado(Personaje),
                 send(@texto, selection('Resultado Final:')),
-                send(@main, display,@texto,point(20,10)),
+                send(@main, display, @texto, point(20,10)),
                 send(@resp2, selection(Personaje)),
                 new(@boton2, button('Nuevo test',
                 message(@prolog, botones1)
                 )),
-
                 new(@btntratamiento, button('Detalles',
                 message(@prolog, mostrar_personaje, Personaje)
                 )),
@@ -339,8 +336,7 @@ id_imagen_preg1('Eres capaz de mantener la calma y tomar decisiones efectivas o 
                             referente_respuestas(Personalidad, Lista),
                             prueba_presencia_de(Personalidad, Lista).
 
-
-referente_respuestas(Personalidad, Lista):-
+  referente_respuestas(Personalidad, Lista):-
                             conocimiento(Personalidad, Lista).
 
 
@@ -361,7 +357,6 @@ pregunta_sobre(Personalidad, Res, Reply):- preguntar(Res,Respuesta),
 process(Personalidad, Res, si, si):- asserta(conocido(Res)).
 process(Personalidad, Res, no, no):- asserta(conocido(is_false(Res))).
 
-
 clean_scratchpad:- retract(conocido(X)), fail.
 clean_scratchpad.
 
@@ -370,3 +365,43 @@ conocido(_):- fail.
 
 not(X):- X,!,fail.
 not(_).
+
+%PARA FNAF
+:- dynamic conocido_fnaf/1.
+
+mostrar_resultado(X):-generar_personalidad(X),clean_scratchpad_fnaf.
+  mostrar_resultado(error):-clean_scratchpad_fnaf .
+
+generar_personalidad(Personalidad):-
+                           conocimiento_fnaf(Personalidad, Lista),
+                           prueba_respuesta_fnaf(Personalidad, Lista).
+ conocimiento_fnaf(Personalidad, Lista):-
+                            conocimiento(Personalidad, Lista).
+
+  prueba_respuesta_fnaf(Personalidad, []).
+  prueba_respuesta_fnaf(Personalidad, [Head | Tail]):- prueba_verdad_de(Personalidad, Head),
+                                                prueba_respuesta_fnaf(Personalidad, Tail).
+
+ prueba_verdad_de(Personalidad, Res):- conocido_fnaf(Res).
+ prueba_verdad_de(Personalidad, Res):- not(cconocido_fnaf(is_false(Res))),
+pregunta_sobre(Personalidad, Res, Reply), Reply = 'si'.
+
+pregunta_sobre(_, Res, Reply):- preguntar1(Res, Respuesta),
+                         process(Personalidad, Res, Respuesta, Reply).
+
+process(Personalidad, Res, si, si):- asserta(conocido_fnaf(Res)).
+process(Personalidad, Res, no, no):- asserta(conocido_fnaf(is_false(Res))).
+
+
+
+
+
+clean_scratchpad_fnaf :- retract(conocido_fnaf(X)), fail.
+clean_scratchpad_fnaf.
+
+conocido_fnaf(_):- fail.
+
+not(X):- X,!,fail.
+not(_).
+
+
