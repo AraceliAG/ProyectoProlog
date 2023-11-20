@@ -1,4 +1,3 @@
-
 /*
 INTERFAZ GRAFICA: Esta parte del sistema experto es la que se encarga de
 interactuar con la persona comun, mostrar imagenes, botones, textos, etc.
@@ -58,18 +57,24 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                                 send(Figura, display, Bitmap),
                                 send(Figura, status, 1),
                                 send(Ventana, display,Figura,point(0,0)).
+ nueva_imagen1(Ventana1, Imagen) :-new(Figura, figure),
+                                new(Bitmap, bitmap(resource(Imagen),@on)),
+                                send(Bitmap, name, 1),
+                                send(Figura, display, Bitmap),
+                                send(Figura, status, 1),
+                                send(Ventana1, display,Figura,point(0,0)).
   imagen_pregunta(Ventana, Imagen) :-new(Figura, figure),
                                 new(Bitmap, bitmap(resource(Imagen),@on)),
                                 send(Bitmap, name, 1),
                                 send(Figura, display, Bitmap),
                                 send(Figura, status, 1),
                                 send(Ventana, display,Figura,point(500,60)).
-  imagen_pregunta1(Ventana, Imagen) :-new(Figura, figure),
+  imagen_pregunta1(Ventana1, Imagen) :-new(Figura, figure),
                                 new(Bitmap, bitmap(resource(Imagen),@on)),
                                 send(Bitmap, name, 1),
                                 send(Figura, display, Bitmap),
                                 send(Figura, status, 1),
-                                send(Ventana, display,Figura,point(500,60)).
+                                send(Ventana1, display,Figura,point(500,60)).
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
   botones:-borrado,
@@ -91,21 +96,22 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
 
 
   botones1:-borrado,
-                send(@boton, free),
+                send(@boton2, free),
                 send(@btntratamiento,free),
                 mostrar_resultado(Personaje),
                 send(@texto, selection('Resultado Final:')),
                 send(@main, display,@texto,point(20,10)),
-                send(@resp1, selection(Personaje)),
-                new(@boton, button('Nuevo test',
-                message(@prolog, botones)
+                send(@resp2, selection(Personaje)),
+                new(@boton2, button('Nuevo test',
+                message(@prolog, botones1)
                 )),
 
-                new(@btntratamiento,button('Detalles',
-                message(@prolog, mostrar_personaje,Personaje)
+                new(@btntratamiento, button('Detalles',
+                message(@prolog, mostrar_personaje, Personaje)
                 )),
-                send(@main, display,@boton,point(25,250)),
-                send(@main, display,@btntratamiento,point(25,300)).   %BOTON DE DETALLES DEL PERSONAJE
+                send(@main, display, @boton2, point(25, 250)),
+                send(@main, display, @btntratamiento, point(25, 300)).
+
 
 
 
@@ -142,22 +148,23 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
                         free(Di),
                         Resp=Answer.
 
-  preguntar1(Preg1,Resp1):-new(Di,dialog('Colsultar Datos:')),
-                        new(L2,label(texto,'Responde las siguientes preguntas')),
-                        id_imagen_preg1(Preg,Imagen),
-                        imagen_pregunta1(Di,Imagen),
-                        new(La,label(prob,Preg)),
-                        new(B1,button(si,and(message(Di,return,si)))),
-                        new(B2,button(no,and(message(Di,return,no)))),
-                        send(Di, gap, size(25,25)),
-                        send(Di,append(L2)),
-                        send(Di,append(La)),
-                        send(Di,append(B1)),
-                        send(Di,append(B2)),
-                        send(Di,default_button,'si'),
-                        send(Di,open_centered),get(Di,confirm,Answer),
-                        free(Di),
-                        Resp=Answer.
+  preguntar1(Preg1,Resp1):-new(Di,dialog('Consultar Datos:')),
+                          new(L2,label(texto, 'Responde las siguientes preguntas')),
+                          id_imagen_preg1(Preg1, Imagen),
+                          imagen_pregunta1(Di, Imagen),
+                          new(La, label(prob, Preg1)),
+                          new(B1, button(si, and(message(Di, return, si)))),
+                          new(B2, button(no, and(message(Di, return, no)))),
+                          send(Di, gap, size(25,25)),
+                          send(Di, append(L2)),
+                          send(Di, append(La)),
+                          send(Di, append(B1)),
+                          send(Di, append(B2)),
+                          send(Di, default_button, 'si'),
+                          send(Di, open_centered),
+                          get(Di, confirm, Answer),
+                          free(Di),
+                          Resp1 = Answer.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -169,6 +176,8 @@ interfaz_principal:-new(@main,dialog('TEST',
 
   new(@resp1, label(nombre,'',font('times','bold',30))),  %MUESTRA EL MENSAJE DEL RESULTADO
   send(@resp1, colour, white), %CAMBIO DE COLOR   %CAMBIO DE COLOR DEL RESULTADO
+  new(@resp2, label(nombre,'',font('times','bold',30))),  %MUESTRA EL MENSAJE DEL RESULTADO
+  send(@resp2, colour, white), %CAMBIO DE COLOR   %CAMBIO DE COLOR DEL RESULTADO
   new(@lblExp1, label(nombre,'',font('times','roman',14))),
   new(@lblExp2, label(nombre,'',font('times','roman',14))),
   new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
@@ -184,10 +193,12 @@ interfaz_principal:-new(@main,dialog('TEST',
   send(@main, display,@boton2,point(300,150)), %modificacion de coordenada de boton2
   send(@main, display,@texto,point(150,30)), %Posicion 
   send(@main, display,@salir,point(25,350)), 
-  send(@main, display,@resp1,point(20,50)), %Posicion del resultado del personaje
+  send(@main, display,@resp1,point(20,50)),
+  send(@main, display,@resp2,point(20,50)), %Posicion del resultado del personaje
   send(@main,open_centered).
 
  borrado:- send(@resp1, selection('')).
+ borrado1:-send(@resp2, selection('')).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
