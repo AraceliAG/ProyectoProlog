@@ -64,6 +64,13 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                                 send(Figura, display, Bitmap),
                                 send(Figura, status, 1),
                                 send(Ventana, display,Figura,point(500,60)).
+  imagen_pregunta1(Ventana, Imagen) :-new(Figura, figure),
+                                new(Bitmap, bitmap(resource(Imagen),@on)),
+                                send(Bitmap, name, 1),
+                                send(Figura, display, Bitmap),
+                                send(Figura, status, 1),
+                                send(Ventana, display,Figura,point(500,60)).
+
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
   botones:-borrado,
                 send(@boton, free),
@@ -81,6 +88,25 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                 )),
                 send(@main, display,@boton,point(25,250)),
                 send(@main, display,@btntratamiento,point(25,300)).   %BOTON DE DETALLES DEL PERSONAJE
+
+
+  botones1:-borrado,
+                send(@boton, free),
+                send(@btntratamiento,free),
+                mostrar_resultado(Personaje),
+                send(@texto, selection('Resultado Final:')),
+                send(@main, display,@texto,point(20,10)),
+                send(@resp1, selection(Personaje)),
+                new(@boton, button('Nuevo test',
+                message(@prolog, botones)
+                )),
+
+                new(@btntratamiento,button('Detalles',
+                message(@prolog, mostrar_personaje,Personaje)
+                )),
+                send(@main, display,@boton,point(25,250)),
+                send(@main, display,@btntratamiento,point(25,300)).   %BOTON DE DETALLES DEL PERSONAJE
+
 
 
 
@@ -116,6 +142,23 @@ tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamien
                         free(Di),
                         Resp=Answer.
 
+  preguntar1(Preg1,Resp1):-new(Di,dialog('Colsultar Datos:')),
+                        new(L2,label(texto,'Responde las siguientes preguntas')),
+                        id_imagen_preg1(Preg,Imagen),
+                        imagen_pregunta1(Di,Imagen),
+                        new(La,label(prob,Preg)),
+                        new(B1,button(si,and(message(Di,return,si)))),
+                        new(B2,button(no,and(message(Di,return,no)))),
+                        send(Di, gap, size(25,25)),
+                        send(Di,append(L2)),
+                        send(Di,append(La)),
+                        send(Di,append(B1)),
+                        send(Di,append(B2)),
+                        send(Di,default_button,'si'),
+                        send(Di,open_centered),get(Di,confirm,Answer),
+                        free(Di),
+                        Resp=Answer.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 interfaz_principal:-new(@main,dialog('TEST',
@@ -130,7 +173,7 @@ interfaz_principal:-new(@main,dialog('TEST',
   new(@lblExp2, label(nombre,'',font('times','roman',14))),
   new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
   new(@boton, button('ANIMALES',message(@prolog, botones))), %Se crea boton ANIMALES
-  new(@boton2, button('FNAF',message(@prolog, botones))), %Se crea boton FNAF
+  new(@boton2, button('FNAF',message(@prolog, botones1))), %Se crea boton FNAF
 
   
 
@@ -189,19 +232,19 @@ conocimiento('ERES UN PINWINO',
 
 
 %TEST_FNAF
-conocimiento('ERES FOXY',
+conocimiento1('ERES FOXY',
 ['Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa', 'Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion',
 'Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto']).
-conocimiento('ERES FREDDYFAZBEAR',
+conocimiento1('ERES FREDDYFAZBEAR',
 ['Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas', 'Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales',
 'Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','Eres colaborativo o puedes tener rivalidades competitivas','Te mantienes firme o prefieres evitar conflictos']).
-conocimiento('ERES CHICA POLLITA SEXY',
+conocimiento1('ERES CHICA POLLITA SEXY',
 ['Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno', 'Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas',
 'Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos']).
-conocimiento('ERES BONNIE',
+conocimiento1('ERES BONNIE',
 ['Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica', 'Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos',
 'Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos']).
-conocimiento('ERES SPRINGTRAP',
+conocimiento1('ERES SPRINGTRAP',
 ['Eres capaz de mantener la calma y tomar decisiones racionales', 'Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces',
 'Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a']).
 
@@ -241,35 +284,35 @@ id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la 
 
 
 %TEST_FOXY
-id_imagen_preg('Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa','escamas_levantadas').
-id_imagen_preg('Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion','calma').
-id_imagen_preg('Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','calma').
-id_imagen_preg('Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','calma').
-id_imagen_preg('Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto','calma').
+id_imagen_preg1('Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa','escamas_levantadas').
+id_imagen_preg1('Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion','calma').
+id_imagen_preg1('Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','calma').
+id_imagen_preg1('Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','calma').
+id_imagen_preg1('Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto','calma').
 %TEST_FREDDYFAZBEAR
-id_imagen_preg('Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas','calma').
-id_imagen_preg('Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales','calma').
-id_imagen_preg('Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','calma').
-id_imagen_preg('Eres colaborativo o puedes tener rivalidades competitivas','calma').
-id_imagen_preg('Te mantienes firme o prefieres evitar conflictos','calma').
+id_imagen_preg1('Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas','calma').
+id_imagen_preg1('Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales','calma').
+id_imagen_preg1('Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','calma').
+id_imagen_preg1('Eres colaborativo o puedes tener rivalidades competitivas','calma').
+id_imagen_preg1('Te mantienes firme o prefieres evitar conflictos','calma').
 %TEST_CHICA
-id_imagen_preg('Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno','calma').
-id_imagen_preg('Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas','calma').
-id_imagen_preg('Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','calma').
-id_imagen_preg('Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','calma').
-id_imagen_preg('Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos','calma').
+id_imagen_preg1('Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno','calma').
+id_imagen_preg1('Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas','calma').
+id_imagen_preg1('Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','calma').
+id_imagen_preg1('Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','calma').
+id_imagen_preg1('Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos','calma').
 %TEST_BONNIE
-id_imagen_preg('Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica','calma').
-id_imagen_preg('Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos','calma').
-id_imagen_preg('Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','calma').
-id_imagen_preg('Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','calma').
-id_imagen_preg('Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos','calma').
+id_imagen_preg1('Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica','calma').
+id_imagen_preg1('Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos','calma').
+id_imagen_preg1('Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','calma').
+id_imagen_preg1('Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','calma').
+id_imagen_preg1('Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos','calma').
 %TEST_SPRINGTRAP
-id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones racionales','hexamita').
-id_imagen_preg('Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces','calma').
-id_imagen_preg('Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','calma').
-id_imagen_preg('Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','calma').
-id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a','calma').
+id_imagen_preg1('Eres capaz de mantener la calma y tomar decisiones racionales','hexamita').
+id_imagen_preg1('Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces','calma').
+id_imagen_preg1('Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','calma').
+id_imagen_preg1('Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','calma').
+id_imagen_preg1('Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a','calma').
 
 
 
