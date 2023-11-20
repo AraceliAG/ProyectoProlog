@@ -14,31 +14,42 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
 
  resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
  resource(portada, image, image('xd.jpg')). %FONDO DE INICIO 
- resource(comunicacion, image, image('Comunicacion.jpg')).
- resource(jueg, image, image('Juego.jpg')).
- resource(lenguaje, image, image('Lenguaje.jpg')).
- resource(jerarquia, image, image('Jerarquia.jpg')).
- resource(empatia, image, image('Empatia.jpg')).
- resource(persevera, image, image('PersevaranciaP.jpg')).
- resource(crianza, image, image('Crianza.jpg')).
- resource(comunidad, image, image('Comunidad.jpg')).
- resource(compromiso, image, image('Compromiso.jpg')).
- resource(social, image, image('Sociabilidad.jpg')).
- resource(parasito_hexamita, image, image('delfin2.jpg')).
- resource(lo_siento_diagnostico_desconocido, image, image('delfin2.jpg')).
- resource(protector, image, image('Protectores.jpg')).
- resource(lealtad, image, image('Lealtad.jpg')).
- resource(jugueton, image, image('Juguetones.jpg')).
- resource(cazador, image, image('Cazador.jpg')).
- resource(independiente, image, image('Independencia.jpg')). %SE AGREGA EL NOMBRE DEL ID EN ESTE CASO ES independiente Y DENTRO DEL PARENTESIS EL NOMBRE DE NUETRO ARCHIVO
- resource(afecto, image, image('Afectuosidad.jpg')).
- resource(calma, image, image('Tranquilidad.jpg')).
-  resource(resistencia, image, image('Resistencia.jpg')).
+ resource(adaptabilidad, image, image('Adaptabilidad.jpg')).
+ resource(afectuosidad, image, image('Afectuosidad.jpg')).
  resource(alimentacion, image, image('Alimentacion.jpg')).
- resource(amistoso, image, image('Perro.jpg')).
+ resource(afecto, image, image('Afectuosidad.jpg')).
+ resource(amigables, image, image('Amigables.jpg')).
+ resource(cazador, image, image('Cazador.jpg')).
+ resource(compromiso, image, image('Compromiso.jpg')).
+ resource(comunicacion, image, image('Comunicacion.jpg')).
+ resource(comunidad, image, image('Comunidad.jpg')).
+ resource(crianza, image, image('Crianza.jpg')).
  resource(curiosidad, image, image('curiosidad.jpg')).
- resource(habilidad, image, image('Perro2.jpg')).
+ resource(delfin, image, image('Delfin.jpg')).
+ resource(delfin2, image, image('delfin2.jpg')).
+ resource(empatia, image, image('Empatia.jpg')).
+ resource(entrenables, image, image('Entrenables.jpg')).
+ resource(gato, image, image('Gato.jpg')).
+ resource(gato2, image, image('Gato2.jpg')).
+ resource(independencia, image, image('Independencia.jpg')).
+ resource(inteligencia, image, image('Inteligencia.jpg')).
+ resource(jerarquia, image, image('Jerarquia.jpg')).
+ resource(juego, image, image('Juego.jpg')).
  resource(juegos, image, image('Juegos.jpg')).
+ resource(juguetones, image, image('Juguetones.jpg')).
+ resource(lealtad, image, image('Lealtad.jpg')).
+ resource(lenguaje, image, image('Lenguaje.jpg')).
+ resource(perro, image, image('Perro.jpg')).
+ resource(perro2, image, image('Perro2.jpg')).
+ resource(perseveranciap, image, image('PersevaranciaP.jpg')).
+ resource(pinwino, image, image('pinwino.jpg')).
+ resource(pinwino2, image, image('Pinwino2.jpg')).
+ resource(protectores, image, image('Protectores.jpg')).
+ resource(resistencia, image, image('Resistencia.jpg')).
+ resource(sociabilidad, image, image('Sociabilidad.jpg')).
+ resource(tranquilidad, image, image('Tranquilidad.jpg')).
+ resource(vaca, image, image('vaca.jpg')).
+ resource(vaca2, image, image('vaca2.jpg')).
 
  mostrar_imagen(Pantalla, Imagen) :- new(Figura, figure),
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
@@ -130,7 +141,7 @@ interfaz_principal:-new(@main,dialog('TEST',
   new(@lblExp2, label(nombre,'',font('times','roman',14))),
   new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
   new(@boton, button('ANIMALES',message(@prolog, botones))), %Se crea boton ANIMALES
-  new(@boton2, button('FNAF',message(@prolog, botones))), %Se crea boton FNAF
+
 
   
 
@@ -138,7 +149,6 @@ interfaz_principal:-new(@main,dialog('TEST',
 
   nueva_imagen(@main, img_principal),
   send(@main, display,@boton,point(300,100)), %modificacion de coordenada de boton 
-  send(@main, display,@boton2,point(300,150)), %modificacion de coordenada de boton2
   send(@main, display,@texto,point(150,30)), %Posicion 
   send(@main, display,@salir,point(25,350)), 
   send(@main, display,@resp1,point(20,50)), %Posicion del resultado del personaje
@@ -186,91 +196,36 @@ conocimiento('ERES UN DELFIN',
 conocimiento('ERES UN PINWINO',
 ['Te sientes mas comodo trabajando en equipo y disfrutas de la interaccion social o prefieres trabajar de manera independiente', 'Eres una persona que valora la monogamia y la fidelidad en las relaciones personales',
  'Te consideras una persona dedicada y dispuesta a asumir responsabilidades en el cuidado de tus seres queridos', 'Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles']).
-
-
-%TEST_FNAF
-conocimiento('ERES FOXY',
-['Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa', 'Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion',
-'Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto']).
-conocimiento('ERES FREDDYFAZBEAR',
-['Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas', 'Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales',
-'Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','Eres colaborativo o puedes tener rivalidades competitivas','Te mantienes firme o prefieres evitar conflictos']).
-conocimiento('ERES CHICA POLLITA SEXY',
-['Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno', 'Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas',
-'Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos']).
-conocimiento('ERES BONNIE',
-['Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica', 'Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos',
-'Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos']).
-conocimiento('ERES SPRINGTRAP',
-['Eres capaz de mantener la calma y tomar decisiones racionales', 'Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces',
-'Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a']).
-
-
-
-
 %TEST_GATO
-id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independiente'). %EN EL SEGUNDO PARAMETRO O SEA inndependiente SE LLAMA EL ID QUE SE DECLARA EN EL INICIO
+id_imagen_preg('Prefieres trabajar en proyectos de manera independiente','independencia'). %EN EL SEGUNDO PARAMETRO O SEA inndependiente SE LLAMA EL ID QUE SE DECLARA EN EL INICIO
 id_imagen_preg('Te sientes atraido por explorar lugares o actividades nuevas','curiosidad').
-id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','afecto').
+id_imagen_preg('Disfrutas pasar tiempo con amigos y familiares cercanos','afectuosidad').
 id_imagen_preg('Te gusta participar en actividades ludicas','juegos').
 id_imagen_preg('Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas','cazador').
 %TEST_PERRO
 id_imagen_preg('Consideras que eres una persona leal y confiable en tus relaciones personales y laborales','lealtad').
-id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','amistoso').
-id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','jugueton').
-id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos','protector').
-id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','habilidad').
+id_imagen_preg('Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos','amigables').
+id_imagen_preg('Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','juguetones').
+id_imagen_preg('Te sientes responsable por la seguridad y el bienestar de tus seres queridos','protectores').
+id_imagen_preg('Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales','entrenables').
 %TEST_VACA
-id_imagen_preg('Sueles mantener la calma en situaciones de estres o prefieres ambientes pacificos y relajados','calma').
+id_imagen_preg('Sueles mantener la calma en situaciones de estres o prefieres ambientes pacificos y relajados','tranquilidad').
 id_imagen_preg('Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios','alimentacion').
 id_imagen_preg('Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresion verbal','comunicacion').
 id_imagen_preg('Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','resistencia').
 id_imagen_preg('Te sientes comodo en situaciones con estructuras jerarquicas','jerarquia').
 %TEST_DELFIN
-id_imagen_preg('Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva','calma').
-id_imagen_preg('Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares','social').
-id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','jueg').
-id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','social').
-id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','curiosidad').
+id_imagen_preg('Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva','inteligencia').
+id_imagen_preg('Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares','sociabilidad').
+id_imagen_preg('Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','juego').
+id_imagen_preg('Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','empatia').
+id_imagen_preg('Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno','adaptabilidad').
 %TEST_PINWINO
 id_imagen_preg('Te sientes mas comodo trabajando en equipo y disfrutas de la interaccion social o prefieres trabajar de manera independiente','comunidad').
 id_imagen_preg('Eres una persona que valora la monogamia y la fidelidad en las relaciones personales','compromiso').
 id_imagen_preg('Te consideras una persona dedicada y dispuesta a asumir responsabilidades en el cuidado de tus seres queridos','crianza').
 id_imagen_preg('Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','lenguaje').
-id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','persevera').
-
-
-%TEST_FOXY
-id_imagen_preg('Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa','escamas_levantadas').
-id_imagen_preg('Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion','calma').
-id_imagen_preg('Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','calma').
-id_imagen_preg('Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','calma').
-id_imagen_preg('Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto','calma').
-%TEST_FREDDYFAZBEAR
-id_imagen_preg('Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas','calma').
-id_imagen_preg('Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales','calma').
-id_imagen_preg('Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','calma').
-id_imagen_preg('Eres colaborativo o puedes tener rivalidades competitivas','calma').
-id_imagen_preg('Te mantienes firme o prefieres evitar conflictos','calma').
-%TEST_CHICA
-id_imagen_preg('Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno','calma').
-id_imagen_preg('Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas','calma').
-id_imagen_preg('Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','calma').
-id_imagen_preg('Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','calma').
-id_imagen_preg('Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos','calma').
-%TEST_BONNIE
-id_imagen_preg('Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica','calma').
-id_imagen_preg('Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos','calma').
-id_imagen_preg('Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','calma').
-id_imagen_preg('Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','calma').
-id_imagen_preg('Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos','calma').
-%TEST_SPRINGTRAP
-id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones racionales','hexamita').
-id_imagen_preg('Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces','calma').
-id_imagen_preg('Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','calma').
-id_imagen_preg('Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','calma').
-id_imagen_preg('Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a','calma').
-
+id_imagen_preg('Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles','perseveranciap').
 
 
  /* MOTOR DE INFERENCIA: Esta parte del sistema experto se encarga de
