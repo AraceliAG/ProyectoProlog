@@ -20,8 +20,8 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  resource(rVaca, image, image('Vaca_resultado.jpg')).
 
 
- resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
- resource(portada, image, image('xd.jpg')). %FONDO DE INICIO 
+ resource(img_principal, image, image('menuu.jpg')). %FONDO DEL MENU 
+ resource(portada, image, image('portada.jpg')). %FONDO DE INICIO 
  resource(adaptabilidad, image, image('Adaptabilidad.jpg')).
  resource(afectuosidad, image, image('Afectuosidad.jpg')).
  resource(alimentacion, image, image('Alimentacion.jpg')).
@@ -141,10 +141,10 @@ interfaz_principal:-new(@main,dialog('TEST',
   size(1000,1000))),
   new(@texto, label(nombre,'ELIGE EL TEST QUE DESEAS REALIZAR',font('times','bold',20))), %ELIGE TEXTO
  
-  send(@texto, colour, white), %cambio de color de letra del label
+  %send(@texto, colour, white), %cambio de color de letra del label
 
   new(@resp1, label(nombre,'',font('times','bold',30))),  %MUESTRA EL MENSAJE DEL RESULTADO
-  send(@resp1, colour, white), %CAMBIO DE COLOR   %CAMBIO DE COLOR DEL RESULTADO
+  %send(@resp1, colour, white), %CAMBIO DE COLOR   %CAMBIO DE COLOR DEL RESULTADO
   new(@lblExp1, label(nombre,'',font('times','roman',14))),
   new(@lblExp2, label(nombre,'',font('times','roman',14))),
   new(@salir,button('SALIR',and(message(@main,destroy),message(@main,free)))),
