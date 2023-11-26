@@ -12,6 +12,14 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  :- use_module(library(pce_style_item)).
  :- dynamic color/2.
 
+
+ resource(rPerro, image, image('Perro_resultado.jpg')).
+ resource(rPinwino, image, image('Pinwino_resultado.jpg')).
+ resource(rGato, image, image('Gato_resultado.jpg')).
+ resource(rDelfin, image, image('Delfin_resultado.jpg')).
+ resource(rVaca, image, image('Vaca_resultado.jpg')).
+
+
  resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
  resource(portada, image, image('xd.jpg')). %FONDO DE INICIO 
  resource(adaptabilidad, image, image('Adaptabilidad.jpg')).
@@ -62,7 +70,7 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
                                      send(Bitmap, name, 1),
                                      send(Figura, display, Bitmap),
                                      send(Figura, status, 1),
-                                     send(Pantalla, display,Figura,point(20,100)).
+                                     send(Pantalla, display,Figura,point(0,0)).
  nueva_imagen(Ventana, Imagen) :-new(Figura, figure),
                                 new(Bitmap, bitmap(resource(Imagen),@on)),
                                 send(Bitmap, name, 1),
@@ -95,17 +103,17 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
 
 
 
-  mostrar_personaje(X):-new(@tratam, dialog('Características')),
-                          send(@tratam, append, label(nombre, 'Explicacion: ')),
-                          send(@tratam, display,@lblExp1,point(70,51)),
-                          send(@tratam, display,@lblExp2,point(50,80)),
+  mostrar_personaje(X):-new(@tratam, dialog('')),
+                          send(@tratam, append, label(nombre, '')),
+                          send(@tratam, display,@lblExp1,point(0,0)),
+                          send(@tratam, display,@lblExp2,point(0,0)),
                           tratamiento(X),
                           send(@tratam, transient_for, @main),
                           send(@tratam, open_centered).
 
 /* AQUI SE MUESTRA EL PERSONAJE QUE ERES*/
 
-tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamiento Es:')),
+tratamiento(X):- send(@lblExp1,selection('De acuerdo con el TEST eres:')),
                  mostrar_imagen_tratamiento(@tratam,X).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -177,23 +185,23 @@ interfaz_principal:-new(@main,dialog('TEST',
 el identificador de imagenes de acuerdo a las repuestas
 */
 
-conocimiento('ERES UN GATO',
+conocimiento('rGato',
 ['Prefieres trabajar en proyectos de manera independiente', 'Te sientes atraido por explorar lugares o actividades nuevas',
 'Disfrutas pasar tiempo con amigos y familiares cercanos','Te gusta participar en actividades ludicas','Tienes una mentalidad orientada a objetivos y te sientes motivado por lograr metas']).
 
-conocimiento('ERES UN PERRO',
+conocimiento('rPerro',
 ['Consideras que eres una persona leal y confiable en tus relaciones personales y laborales', 'Te sientes comodo interactuando con nuevas personas y disfrutas de la compania de amigos y conocidos ',
 'Tienes un espiritu jugueton y disfrutas de actividades recreativas y entretenimiento','Te sientes responsable por la seguridad y el bienestar de tus seres queridos','Eres receptivo a aprender nuevas habilidades y seguir instrucciones en situaciones personales o profesionales']).
 
-conocimiento('ERES UNA VACA',
+conocimiento('rVaca',
 ['Sueles mantener la calma en situaciones de estres o prefieres ambientes pacificos y relajados',
 'Tienes preferencias alimenticias especificas o eres adaptable a diferentes tipos de comidas y ambientes alimenticios', 'Eres habil en comunicar tus necesidades y emociones a traves del lenguaje corporal y la expresion verbal','Te consideras una persona resistente y capaz de afrontar desafios fisicos y climaticos con tenacidad','Te sientes comodo en situaciones con estructuras jerarquicas']).
 
-conocimiento('ERES UN DELFIN',
+conocimiento('rDelfin',
 ['Te consideras una persona que disfruta de desafios mentales y esta dispuesta a aprender y resolver problemas de manera efectiva', 'Te sientes atraido por la interaccion social y tiendes a formar relaciones cercanas con amigos y familiares',
  'Eres una persona que disfruta de la diversion y el juego en tu tiempo libre','Sientes que eres una persona empatica y capaz de comunicarte de manera efectiva con los demas','Tienes una mente curiosa y te sientes atraido por explorar cosas nuevas e inusuales en tu entorno']).
 
-conocimiento('ERES UN PINWINO',
+conocimiento('rPinwino',
 ['Te sientes mas comodo trabajando en equipo y disfrutas de la interaccion social o prefieres trabajar de manera independiente', 'Eres una persona que valora la monogamia y la fidelidad en las relaciones personales',
  'Te consideras una persona dedicada y dispuesta a asumir responsabilidades en el cuidado de tus seres queridos', 'Eres expresivo y comunicativo en tus relaciones con los demas o tiendes a ser mas reservado en tus expresiones','Eres capaz de adaptarte a situaciones desafiantes y mantener la resistencia en condiciones dificiles']).
 %TEST_GATO
