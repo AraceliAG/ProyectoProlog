@@ -19,8 +19,8 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  resource(rBONNIE, image, image('Bonnie_resultado.jpg')).
  resource(rSPRINGTRAP, image, image('Springtrap_resultado.jpg')).
 
-resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
- resource(portada, image, image('xd.jpg')). %FONDO DE INICIO 
+resource(img_principal, image, image('menuf.jpg')). %FONDO DEL MENU 
+ resource(portada, image, image('portadaf.jpg')). %FONDO DE INICIO 
  resource(agresividad, image, image('AgresividadFoxy.jpg')).
  resource(aspaterrador, image, image('AspAterrador.jpg')).
  resource(aspdistintivo, image, image('AspDistintivo.jpg')).
@@ -54,7 +54,7 @@ resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU
                                      send(Bitmap, name, 1),
                                      send(Figura, display, Bitmap),
                                      send(Figura, status, 1),
-                                     send(Pantalla, display,Figura,point(20,100)).
+                                     send(Pantalla, display,Figura,point(0,0)).
  nueva_imagen(Ventana, Imagen) :-new(Figura, figure),
                                 new(Bitmap, bitmap(resource(Imagen),@on)),
                                 send(Bitmap, name, 1),
@@ -97,7 +97,7 @@ resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU
 
 /* AQUI SE MUESTRA EL PERSONAJE QUE ERES*/
 
-tratamiento(X):- send(@lblExp1,selection('De acuerdo con el TEST eres:')),
+tratamiento(X):- send(@lblExp1,selection('')),
                  mostrar_imagen_tratamiento(@tratam,X).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
