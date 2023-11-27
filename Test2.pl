@@ -12,6 +12,13 @@ Y LUEGO SOLO CONSULTAR TODO, AUTOMATICAMENTE SE ABRIRA LA VENTANA DEL PROGRAMA
  :- use_module(library(pce_style_item)).
  :- dynamic color/2.
 
+
+ resource(rFOXY, image, image('Foxy_resultado.jpg')).
+ resource(rFREDDYFAZBEAR, image, image('Freddy_resultado.jpg')).
+ resource(rCHICA, image, image('Chica_resultado.jpg')).
+ resource(rBONNIE, image, image('Bonnie_resultado.jpg')).
+ resource(rSPRINGTRAP, image, image('Springtrap_resultado.jpg')).
+
 resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU 
  resource(portada, image, image('xd.jpg')). %FONDO DE INICIO 
  resource(agresividad, image, image('AgresividadFoxy.jpg')).
@@ -80,8 +87,8 @@ resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU
 
 
 
-  mostrar_personaje(X):-new(@tratam, dialog('Características')),
-                          send(@tratam, append, label(nombre, 'Explicacion: ')),
+  mostrar_personaje(X):-new(@tratam, dialog('')),
+                          send(@tratam, append, label(nombre, '')),
                           send(@tratam, display,@lblExp1,point(70,51)),
                           send(@tratam, display,@lblExp2,point(50,80)),
                           tratamiento(X),
@@ -90,7 +97,7 @@ resource(img_principal, image, image('xd2.jpg')). %FONDO DEL MENU
 
 /* AQUI SE MUESTRA EL PERSONAJE QUE ERES*/
 
-tratamiento(X):- send(@lblExp1,selection('De Acuerdo Al Diagnostico El Tratamiento Es:')),
+tratamiento(X):- send(@lblExp1,selection('De acuerdo con el TEST eres:')),
                  mostrar_imagen_tratamiento(@tratam,X).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -162,19 +169,19 @@ interfaz_principal:-new(@main,dialog('TEST',
 el identificador de imagenes de acuerdo a las repuestas
 */
 %TEST_FNAF
-conocimiento('ERES FOXY',
+conocimiento('rFOXY',
 ['Prefieres abordar los desafios de frente y actuar de manera decidida incluso cuando la situación es intensa', 'Te consideras alguien que a pesar de los contratiempos puede recuperarse y seguir adelante con resiliencia y determinacion',
 'Disfrutas de la interaccion social directa siendo claro y directo en tus comunicaciones incluso en situaciones intensas','Eres bueno para adaptarte a circunstancias cambiantes y para mantenerte fuerte y en funcionamiento a pesar de desafíos constantes','Eres mas competitivo y auto-suficiente o prefieres colaborar y trabajar en conjunto']).
-conocimiento('ERES FREDDYFAZBEAR',
+conocimiento('rFREDDYFAZBEAR',
 ['Te sientes comodo tomando la iniciativa y liderando equipos en situaciones desafiantes o complejas', 'Disfrutas de estar en el centro de la atencion o prefieres mantener un perfil mas discreto en grupos sociales',
 'Eres bueno manejando situaciones impredecibles o cambiantes manteniendo la calma y tomando decisiones rapidas','Eres colaborativo o puedes tener rivalidades competitivas','Te mantienes firme o prefieres evitar conflictos']).
-conocimiento('ERES CHICA POLLITA SEXY',
+conocimiento('rCHICA',
 ['Te identificas como alguien con una actitud energica y positiva que tiende a contagiar alegria en su entorno', 'Disfrutas participando activamente en grupos sociales siendo dinamico/a y animado/a en tu interaccion con otras personas',
 'Consideras importante proyectar una imagen amigable y colorida en tu forma de vestir o en tu presentacion personal','Tienes rasgos o habitos que te hacen destacar ya sea por tu comportamiento predecible o por algo unico que te distingue','Eres alguien que tiende a tener relaciones especificas con ciertos individuos o que interactua de manera equitativa con todos']).
-conocimiento('ERES BONNIE',
+conocimiento('rBONNIE',
 ['Te sientes atraido por actividades creativas como la musica el arte o cualquier expresion artistica', 'Te identificas mas como alguien que aunque puede ser timido en ciertas situaciones muestra una personalidad mas activa o expresiva en contextos especificos',
 'Tienes rasgos o habilidades que te hacen destacar ya sea en tu apariencia o en alguna actividad que te apasione','Te sientes mas comodo/a interactuando con un grupo selecto de personas o te sientes a gusto socializando con una amplia variedad de individuos','Eres mas cercano/a a ciertas personas o mantienes relaciones equitativas con todos']).
-conocimiento('ERES SPRINGTRAP',
+conocimiento('rSPRINGTRAP',
 ['Eres capaz de mantener la calma y tomar decisiones racionales', 'Tienes habilidades para lidiar con situaciones inesperadas o sorpresivas manteniendo la compostura y tomando medidas rapidas y eficaces',
 'Te sientes atraido por el misterio y lo oscuro en historias películas o juegos o prefieres evitarlos por completo','Eres una persona que tiende a planificar estrategicamente en situaciones dificiles o inquietantes o prefieres actuar espontaneamente','Eres capaz de mantener la calma y tomar decisiones efectivas o te sientes abrumado/a']).
 %TEST_FOXY
